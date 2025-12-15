@@ -8,4 +8,42 @@ body {
 
 .container {
     border: 2px solid black;
+    width: 500px;
+    height: 500px;
+}
+
+.carousel {
+    display: flex;
+    width: 2500px;
+    height: 500px;
+}
+
+.carousel > div {
+    /* max-width: 500px; */
+    /* max-height: 500px; */
+    height: 500px;
+    width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img1 {
+    background-color: rgb(230, 33, 33);
+}
+
+.img2 {
+    background-color: aqua;
+}
+
+.img3 {
+    background-color: rgb(204, 223, 82);
+}
+
+.img4 {
+    background-color: gray;
+}
+
+.img5 {
+    background-color: rgb(90, 90, 241);
 }
