@@ -1,3 +1,8 @@
+/* make sizing predictable and include borders in measurements */
+* {
+    box-sizing: border-box;
+}
+
 body {
     display: flex;
     justify-content: center;
@@ -7,25 +12,31 @@ body {
 }
 
 .container {
+    /* https://x.com/i/grok?conversation=2000403646123528263 */
     border: 2px solid black;
     width: 500px;
     height: 500px;
+    overflow: hidden;
+    position: relative;
 }
 
 .carousel {
     display: flex;
-    width: 2500px;
+    width: 2500px; /* 5 * 500 */
     height: 500px;
+    transform: translateZ(0); /* promote to its own layer to reduce jitter */
+    position: relative;
+    transform: translateX(0); /* Initial position */
+    transition: transform 0.6s ease; /* Smooth animation */
 }
 
 .carousel > div {
-    /* max-width: 500px; */
-    /* max-height: 500px; */
+    flex: 0 0 500px; /* fixed panel width, avoids rounding/layout shifts */
     height: 500px;
-    width: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
+    user-select: none;
 }
 
 .img1 {
@@ -46,4 +57,44 @@ body {
 
 .img5 {
     background-color: rgb(90, 90, 241);
+}
+
+.back-button {
+    user-select: none;
+    position: absolute;
+    left: 5%;
+    top: 50%;
+
+    font-size: 3rem;
+    color: white;
+    opacity: 40%;
+    text-shadow: 2px 2px 5px rgb(63, 63, 63);
+    cursor: pointer;
+
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.back-button:hover {
+    opacity: 100%;;
+}
+
+.forward-button {
+    user-select: none;
+    position: absolute;
+    right: 5%;
+    top: 50%;
+
+    font-size: 3rem;
+    color: white;
+    opacity: 40%;
+    text-shadow: 2px 2px 5px rgb(63, 63, 63);
+    cursor: pointer;
+
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.forward-button:hover {
+    opacity: 100%;
 }
