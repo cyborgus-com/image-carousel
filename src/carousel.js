@@ -3,6 +3,7 @@ const fwdButton = document.querySelector(".forward-button");
 const container = document.querySelector(".container");
 const carousel = document.querySelector(".carousel");
 const step = 500;
+// const step = Math.round(container.getBoundingClientRect().width);
 
 function getX() {
   const style = window.getComputedStyle(carousel);
@@ -20,7 +21,7 @@ function getX() {
 function setX(x) {
   const minX = -(carousel.clientWidth - container.clientWidth);
   const maxX = 0;
-  x = Math.max(minX, Math.min(maxX, x));
+  x = Math.max(minX, Math.min(maxX, Math.round(x)));
   carousel.style.transform = `translateX(${x}px)`;
 }
 
