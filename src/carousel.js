@@ -2,8 +2,7 @@ const backButton = document.querySelector(".back-button");
 const fwdButton = document.querySelector(".forward-button");
 const container = document.querySelector(".container");
 const carousel = document.querySelector(".carousel");
-const step = container.clientWidth;
-// const currPos = document.querySelector(".currentpos");
+const step = 500;
 
 function getX() {
   const style = window.getComputedStyle(carousel);
@@ -11,7 +10,8 @@ function getX() {
   if (matrix === "none") return 0;
 
   const values = matrix.split("(")[1].split(")")[0].split(",");
-  //   return parseFloat(values[4]) || 0;
+
+  console.log(`matrix: ${matrix}; values: ${values}; step: ${step}`);
   if (matrix.startsWith("matrix3d")) {
     return parseFloat(values[12]) || 0;
   } else return parseFloat(values[4]) || 0;
@@ -25,11 +25,9 @@ function setX(x) {
 }
 
 fwdButton.addEventListener("click", () => {
-  //   carousel.style.transform = "translateX(-500px)";
   setX(getX() - step);
 });
 
 backButton.addEventListener("click", () => {
-  //   carousel.style.transform = "translateX(0px)";
   setX(getX() + step);
 });
